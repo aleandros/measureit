@@ -1,6 +1,14 @@
-require "measureit/version"
+# frozen_string_literal: true
+
+require 'measureit/version'
+require 'measureit/playground'
 
 module Measureit
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.playground(&block)
+    playground = Playground.new
+    playground.instance_eval(&block)
+    playground.run
+  end
 end
